@@ -20,21 +20,21 @@ void setUp(void)
     LedsCreate(&virtuales);
 }
 
-
+//! @test Todos los leds empiezan apagados
 void test_todos_los_leds_inician_apagados(void)
 {
     uint16_t virtuales=0xFFFF;
     LedsCreate(&virtuales);
     TEST_ASSERT_EQUAL(0x0000,virtuales);
 }
-
+//! @test Encender un led
 void test_enceder_un_led(void)
 {
 
     LedsTurnOn(1);
     TEST_ASSERT_EQUAL(0x0001,virtuales);
 }
-
+//! @test Encender y apagar un led
 void test_encender_y_apagar_un_led(void)
 {
 
@@ -42,7 +42,7 @@ void test_encender_y_apagar_un_led(void)
         LedsTurnOff(1);
         TEST_ASSERT_EQUAL(0x0000,virtuales);
 }
-
+//! @test Encender y apagar varios leds
 void test_prender_y_apagar_varios_leds(void)
 {
         LedsTurnOn(3);
@@ -50,27 +50,27 @@ void test_prender_y_apagar_varios_leds(void)
         LedsTurnOff(3);
         TEST_ASSERT_EQUAL(0x0010,virtuales);
 }
-
+//! @test Encender dos leds independientes
 void test_dos_leds_independientes(void)
 {
         LedsTurnOn(4);
         LedsTurnOn(7);
         TEST_ASSERT_EQUAL(0x0048,virtuales);
 }
-
+//! @test Encender todos los leds
 void test_encender_todos(void)
 {
         LedsAllOn(&virtuales);
         TEST_ASSERT_EQUAL(0xFFFF,virtuales);
 }
-
+//! @test Apagar todos los leds
 void test_apagar_todos(void)
 {
         uint16_t virtuales=0xFFFF;
         LedsAllOff(&virtuales);
         TEST_ASSERT_EQUAL(0x0000,virtuales);
 }
-
+//! @test Obtener el estado de un led encendido
 void test_obtener_estado_led_encendido(void)
 {
     uint8_t estado;
@@ -80,7 +80,7 @@ void test_obtener_estado_led_encendido(void)
 }
 
 
-
+//! @test Obtener el estado de un led apagado
 void test_obtener_estado_leds_apagado(void)
 {
     uint8_t estado;
@@ -88,7 +88,7 @@ void test_obtener_estado_leds_apagado(void)
     estado=LedState(8);
     TEST_ASSERT_EQUAL(0x00,estado);
 }
-
+//! @test Obtener el estado de un led encendido con dos leds encendidos
 void test_obtener_estado_led_encendido_con_dos_encendidos(void)
 {
     uint8_t estado;
