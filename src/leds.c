@@ -1,8 +1,5 @@
 #include "leds.h"
-#define LEDS_ALL_OFF    0x0000
-#define LEDS_ALL_ON     0xFFFF
-#define LED_STATE_ON    1
-#define LED_STATE_OFF   0 
+
 
 static uint16_t * puerto;
 
@@ -83,17 +80,17 @@ void LedsAllOff(uint16_t * direccion)
  * @param nled número de led
  * @return estado del led 
  */
-uint8_t LedState(uint8_t nled)
+bool LedState(uint8_t nled)
 {
     static uint8_t vretorno;
 
     if(*puerto & BitMask(ledTOBit(nled)))
     {
-        vretorno=LED_STATE_ON;
+        vretorno=true;
     }
     else
     {
-        vretorno=LED_STATE_OFF;
+        vretorno=false;
     }
     
     return vretorno;

@@ -12,6 +12,7 @@
 
 #include "unity.h"
 #include "leds.h"
+#include <stdbool.h>// Booleanos
 
 uint16_t virtuales;
 
@@ -66,36 +67,37 @@ void test_encender_todos(void)
 //! @test Apagar todos los leds
 void test_apagar_todos(void)
 {
-        uint16_t virtuales=0xFFFF;
+        uint16_t virtuales=LEDS_ALL_ON;
         LedsAllOff(&virtuales);
         TEST_ASSERT_EQUAL(0x0000,virtuales);
 }
 //! @test Obtener el estado de un led encendido
 void test_obtener_estado_led_encendido(void)
 {
-    uint8_t estado;
+    bool estado;
     LedsTurnOn(12);
     estado=LedState(12);
-    TEST_ASSERT_EQUAL(0x01,estado);
+    TEST_ASSERT_TRUE(estado);
 }
 
 
 //! @test Obtener el estado de un led apagado
 void test_obtener_estado_leds_apagado(void)
 {
-    uint8_t estado;
+    bool estado;
     LedsTurnOff(8);
     estado=LedState(8);
-    TEST_ASSERT_EQUAL(0x00,estado);
+    TEST_ASSERT_FALSE(estado);
 }
+
 //! @test Obtener el estado de un led encendido con dos leds encendidos
 void test_obtener_estado_led_encendido_con_dos_encendidos(void)
 {
-    uint8_t estado;
+    bool estado;
     LedsTurnOn(2);
     LedsTurnOn(13);
     estado=LedState(2);
-    TEST_ASSERT_EQUAL(0x01,estado);
+    TEST_ASSERT_TRUE(estado);
 }
 
 
